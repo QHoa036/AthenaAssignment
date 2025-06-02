@@ -10,11 +10,11 @@ This document outlines our systematic approach to testing and validating AI-gene
 - **Structural Similarity Index (SSIM)**
   - Measures similarity between reference and generated images
   - Target: >0.7 SSIM score for acceptable assets
-  
+
 - **Color Histogram Analysis**
   - Compares color distribution between reference and generated assets
   - Target: <15% deviation from reference color palette
-  
+
 - **Edge Detection Comparison**
   - Evaluates silhouette and structural accuracy
   - Target: >80% edge correspondence
@@ -29,14 +29,14 @@ This document outlines our systematic approach to testing and validating AI-gene
 
 - **Resolution Verification**
   - Exact match to requested dimensions
-  
+
 - **Format Compliance**
   - File format, transparency, color space
 
 - **Game Engine Compatibility**
   - Import testing in target engine
   - Performance impact assessment
-  
+
 - **Scale Testing**
   - Appearance at different display resolutions
   - Readability at intended game camera distance

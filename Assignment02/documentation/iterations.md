@@ -84,7 +84,7 @@ Achieve closer matching to reference game art style and improve artistic cohesio
 
 #### Prompt Modifications
 ```
-Create a 2D character sprite for a fantasy RPG game in the exact pixel art style of Final Fantasy VI (SNES era). 
+Create a 2D character sprite for a fantasy RPG game in the exact pixel art style of Final Fantasy VI (SNES era).
 
 Technical Specifications:
 - 32x32 pixel resolution
