@@ -1,0 +1,37 @@
+Character for fantasy RPG with pixel art style
+
+Visual Attributes:
+- Primary colors: vibrant blue and purple with gold trim accents
+- Lighting: dramatic side lighting with subtle rim highlights
+- Perspective: front-facing isometric view
+- Level of detail: medium-high with clear silhouette
+- Art style: similar to Final Fantasy VI with modern pixel art techniques
+
+Technical Specifications:
+- Resolution: 512x512
+- Format: PNG
+- Background: transparent
+- Animation frames: single static frame
+- Transparency: yes
+
+Reference Integration:
+- Reference similar to: the classic Final Fantasy VI wizard/mage character design
+- Key elements to maintain: distinctive hat silhouette, staff positioning, robe details
+- Avoid these aspects: modern 3D rendering techniques, photorealistic textures, anime-style proportions
+
+Aesthetic Direction:
+- Mood: mystical and slightly mysterious
+- Theme: ancient magical knowledge guardian
+- Cultural influences: blend of medieval European and Eastern mystical elements
+- Target audience: RPG fans who appreciate retro-inspired pixel art
+
+Optimization Directives:
+- Prioritize: clear silhouette recognition at smaller scales
+- Ensure compatibility with: dark dungeon environments
+- Maintain consistency with: other character designs in a 16-bit style RPG
+
+DO NOT include:
+- Overly complex or noisy background elements
+- Modern pixel art techniques like excessive dithering
+- Text or UI elements unless specifically requested
+- Anatomically incorrect proportions for pixel art character

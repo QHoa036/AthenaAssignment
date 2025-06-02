@@ -1,0 +1,34 @@
+{asset_type} for {game_genre} with {style_descriptor} style
+
+Visual Attributes:
+- Primary colors: {color_palette}
+- Lighting: {lighting_condition}
+- Perspective: {viewpoint}
+- Level of detail: {detail_level}
+- Art style: {specific_style_reference}
+
+Technical Specifications:
+- Resolution: {width}x{height}
+- Format: {file_format}
+- Background: {background_type}
+- Animation frames: {frame_count}
+- Transparency: {transparency}
+
+Reference Integration:
+- Reference similar to: {reference_description}
+- Key elements to maintain: {specific_elements}
+- Avoid these aspects: {elements_to_avoid}
+
+Aesthetic Direction:
+- Mood: {mood_descriptor}
+- Theme: {thematic_elements}
+- Cultural influences: {cultural_references}
+- Target audience: {audience_demographic}
+
+Optimization Directives:
+- Prioritize: {priority_aspect}
+- Ensure compatibility with: {environment}
+- Maintain consistency with: {related_assets}
+
+DO NOT include:
+{negative_prompt}
