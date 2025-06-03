@@ -4,26 +4,35 @@
 
 This project was developed to address Assignment 1 of the Athena task, focusing on automating the process of generating content using AI. The system retrieves data from Google Sheets, generates content using AI models (like OpenAI or Claude), stores results in Google Drive, and provides notifications and analytical reports.
 
+> **Note**: This codebase has been fully localized with Vietnamese comments, docstrings, and logger messages to support the Vietnamese development team.
+
 ## Project Structure
 
 ```
 Assignment01/
-├── src/                     # Main source code
-│   ├── main.py              # Main entry point
-│   ├── sheets_reader.py     # Google Sheets data reader
-│   ├── ai_generator.py      # AI content generator
-│   ├── drive_uploader.py    # Google Drive uploader
-│   ├── notifier.py          # Email and Slack notifier
-│   ├── database.py          # Database manager
-│   ├── report_generator.py  # Report generator
-│   ├── chart_generator.py   # Analytics chart generator
-│   └── html_report_generator.py # HTML report generator
-├── config.py                # Application configuration
-├── data/                    # App data and database
-├── logs/                    # Log files
-├── reports/                 # Output reports
+│── src/                     # Main source code (localized in Vietnamese)
+│   │── integrations/         # Integration modules
+│   │   │── drive_uploader.py  # Google Drive uploader
+│   │   └── sheets_reader.py   # Google Sheets data reader
+│   │── generators/           # Content generators
+│   │   │── ai_generator.py    # AI content generator
+│   │   │── chart_generator.py # Analytics chart generator
+│   │   │── report_generator.py # Report generator
+│   │   └── html_report_generator.py # HTML report generator
+│   │── notifications/        # Notification services
+│   │   └── notifier.py        # Email and Slack notifier
+│   │── persistence/          # Data persistence
+│   │   └── database.py        # Database manager
+│   └── main.py                # Main entry point
+│── .env                     # Environment variables
+│── data/                    # App data and database
+│   └── google_credentials.json # Google API credentials
+│── logs/                    # Log files
+│── reports/                 # Output reports
 │   └── charts/              # Analytics charts
-├── docs/                    # Documentation
+│── docs/                    # Documentation
+│   │── README_en.md         # English documentation
+│   └── README_vi.md         # Vietnamese documentation
 └── tests/                   # Unit tests
 ```
 
@@ -49,10 +58,27 @@ Assignment01/
 pip install -r requirements.txt
 ```
 
-2. Configure parameters in `config.py`:
-   - Add Google API information (Google Sheets, Google Drive)
-   - Configure API keys for OpenAI or Claude
-   - Configure email settings and Slack webhook
+2. Set up environment variables in `.env` file:
+   ```
+   # Google API credentials
+   GOOGLE_APPLICATION_CREDENTIALS=./data/google_credentials.json
+   GOOGLE_SHEETS_ID=your_sheet_id
+   
+   # AI API keys
+   OPENAI_API_KEY=your_openai_api_key
+   ANTHROPIC_API_KEY=your_anthropic_api_key
+   
+   # Notification settings
+   EMAIL_SENDER=your_email@example.com
+   EMAIL_PASSWORD=your_app_password
+   EMAIL_RECIPIENT=admin@example.com
+   
+   # Slack settings
+   SLACK_WEBHOOK_URL=your_slack_webhook_url
+   
+   # Storage settings
+   GOOGLE_DRIVE_FOLDER_ID=your_folder_id
+   ```
 
 3. Ensure you have Google API credentials file (`google_credentials.json`) in the `data` directory.
 
@@ -64,16 +90,16 @@ pip install -r requirements.txt
 python src/main.py
 ```
 
-### Run with specific Google Sheet:
+### Run with specific command-line arguments (overrides .env settings):
 
 ```bash
-python src/main.py --sheet-id YOUR_SHEET_ID
+python src/main.py --sheet-id YOUR_SHEET_ID --openai-key YOUR_OPENAI_KEY --drive-folder YOUR_FOLDER_ID
 ```
 
-### Run with different configuration file:
+### Run with a custom .env file:
 
 ```bash
-python src/main.py --config path/to/custom_config.py
+python src/main.py --env-file path/to/.env.custom
 ```
 
 ## Google Sheets Format

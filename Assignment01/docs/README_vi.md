@@ -4,26 +4,35 @@
 
 Dự án này được phát triển để giải quyết Assignment 1 của bài tập Athena, tập trung vào việc tự động hóa quy trình tạo nội dung bằng AI. Hệ thống lấy dữ liệu từ Google Sheets, tạo nội dung sử dụng các mô hình AI (như OpenAI hoặc Claude), lưu trữ kết quả vào Google Drive, và cung cấp thông báo và báo cáo phân tích.
 
+> **Lưu ý**: Mã nguồn này đã được địa phương hóa hoàn toàn với chú thích, docstring, và thông báo logger bằng tiếng Việt để hỗ trợ nhóm phát triển người Việt.
+
 ## Cấu trúc dự án
 
 ```
 Assignment01/
-├── src/                     # Mã nguồn chính
-│   ├── main.py              # Điểm vào chính của ứng dụng
-│   ├── sheets_reader.py     # Đọc dữ liệu từ Google Sheets
-│   ├── ai_generator.py      # Tạo nội dung bằng AI
-│   ├── drive_uploader.py    # Tải lên Google Drive
-│   ├── notifier.py          # Gửi thông báo qua email và Slack
-│   ├── database.py          # Quản lý cơ sở dữ liệu
-│   ├── report_generator.py  # Tạo báo cáo từ dữ liệu
-│   ├── chart_generator.py   # Tạo biểu đồ phân tích
-│   └── html_report_generator.py # Tạo báo cáo HTML
-├── config.py                # Cấu hình ứng dụng
+├── src/                     # Mã nguồn chính (đã địa phương hóa tiếng Việt)
+│   ├── integrations/         # Các module tích hợp
+│   │   ├── drive_uploader.py  # Tải lên Google Drive
+│   │   └── sheets_reader.py   # Đọc dữ liệu từ Google Sheets
+│   ├── generators/           # Các bộ tạo nội dung
+│   │   ├── ai_generator.py    # Tạo nội dung bằng AI
+│   │   ├── chart_generator.py # Tạo biểu đồ phân tích
+│   │   ├── report_generator.py # Tạo báo cáo từ dữ liệu
+│   │   └── html_report_generator.py # Tạo báo cáo HTML
+│   ├── notifications/        # Dịch vụ thông báo
+│   │   └── notifier.py        # Gửi thông báo qua email và Slack
+│   ├── persistence/          # Lưu trữ dữ liệu
+│   │   └── database.py        # Quản lý cơ sở dữ liệu
+│   └── main.py                # Điểm vào chính của ứng dụng
+├── .env                     # Biến môi trường
 ├── data/                    # Dữ liệu ứng dụng và cơ sở dữ liệu
+│   └── google_credentials.json # Thông tin xác thực Google API
 ├── logs/                    # Tệp nhật ký
 ├── reports/                 # Báo cáo đầu ra
 │   └── charts/              # Biểu đồ phân tích
 ├── docs/                    # Tài liệu
+│   ├── README_en.md         # Tài liệu tiếng Anh
+│   └── README_vi.md         # Tài liệu tiếng Việt
 └── tests/                   # Kiểm thử đơn vị
 ```
 
@@ -49,10 +58,27 @@ Assignment01/
 pip install -r requirements.txt
 ```
 
-2. Cấu hình thông số trong `config.py`:
-   - Thêm thông tin API Google (Google Sheets, Google Drive)
-   - Cấu hình API key cho OpenAI hoặc Claude
-   - Cấu hình thông tin email và webhook Slack
+2. Thiết lập các biến môi trường trong tệp `.env`:
+   ```
+   # Thông tin xác thực Google API
+   GOOGLE_APPLICATION_CREDENTIALS=./data/google_credentials.json
+   GOOGLE_SHEETS_ID=your_sheet_id
+   
+   # Khóa API cho các dịch vụ AI
+   OPENAI_API_KEY=your_openai_api_key
+   ANTHROPIC_API_KEY=your_anthropic_api_key
+   
+   # Cấu hình thông báo email
+   EMAIL_SENDER=your_email@example.com
+   EMAIL_PASSWORD=your_app_password
+   EMAIL_RECIPIENT=admin@example.com
+   
+   # Cấu hình Slack
+   SLACK_WEBHOOK_URL=your_slack_webhook_url
+   
+   # Cài đặt lưu trữ
+   GOOGLE_DRIVE_FOLDER_ID=your_folder_id
+   ```
 
 3. Đảm bảo bạn có file Google API credentials (`google_credentials.json`) trong thư mục `data`.
 
@@ -64,16 +90,16 @@ pip install -r requirements.txt
 python src/main.py
 ```
 
-### Chạy với tệp Google Sheet cụ thể:
+### Chạy với các tham số dòng lệnh cụ thể (ghi đè cài đặt trong .env):
 
 ```bash
-python src/main.py --sheet-id YOUR_SHEET_ID
+python src/main.py --sheet-id YOUR_SHEET_ID --openai-key YOUR_OPENAI_KEY --drive-folder YOUR_FOLDER_ID
 ```
 
-### Chạy với tệp cấu hình khác:
+### Chạy với tệp .env tùy chỉnh:
 
 ```bash
-python src/main.py --config path/to/custom_config.py
+python src/main.py --env-file path/to/.env.custom
 ```
 
 ## Google Sheets Format

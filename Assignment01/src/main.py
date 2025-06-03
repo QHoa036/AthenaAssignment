@@ -3,7 +3,6 @@
 
 """
 Chương trình tự động hóa chính cho Assignment 1
-Main automation program for Assignment 1
 """
 
 import os
@@ -14,19 +13,18 @@ from datetime import datetime
 from pathlib import Path
 
 # Import các module tự tạo
-# Import custom modules
-from sheets_reader import GoogleSheetsReader
-from ai_generator import AIGenerator
-from drive_uploader import GoogleDriveUploader
-from notifier import EmailNotifier, SlackNotifier
-from database import DatabaseManager
-from report_generator import ReportGenerator
+from integrations import GoogleSheetsReader, GoogleDriveUploader
+from notifications import EmailNotifier, SlackNotifier
+from persistence import DatabaseManager
+from generators import ReportGenerator, AIGenerator
 import config
+
+# Đảm bảo dotenv được tải trước khi import config
+from dotenv import load_dotenv
 
 def setup_logging():
     """
     Thiết lập logging cho ứng dụng
-    Setup logging for the application
     """
     log_dir = Path(config.LOG_DIR)
     log_dir.mkdir(exist_ok=True)
@@ -46,36 +44,38 @@ def setup_logging():
 def parse_arguments():
     """
     Phân tích các đối số dòng lệnh
-    Parse command line arguments
     """
-    parser = argparse.ArgumentParser(description='Automation workflow for AI asset generation')
-    parser.add_argument('--sheet-id', help='Google Sheet ID to process')
-    parser.add_argument('--config', help='Path to custom config file')
+    parser = argparse.ArgumentParser(description='Quy trình tự động hóa cho việc tạo tài sản AI')
+    parser.add_argument('--sheet-id', help='ID Google Sheet cần xử lý')
+    parser.add_argument('--config', help='Đường dẫn đến tệp cấu hình tùy chỉnh')
+    parser.add_argument('--env', help='Đường dẫn đến tệp .env để sử dụng')
+    parser.add_argument('--openai-key', help='Khóa API OpenAI')
+    parser.add_argument('--anthropic-key', help='Khóas API Anthropic')
     return parser.parse_args()
 
 def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifier, logger):
     """
     Xử lý một mục từ Google Sheet và tạo nội dung
-    Process a single item from Google Sheet and generate content
 
     Args:
-        item (dict): Item data from Google Sheet
-        db_manager (DatabaseManager): Database manager instance
-        drive_uploader (GoogleDriveUploader): Drive uploader instance
-        email_notifier (EmailNotifier): Email notifier instance
-        slack_notifier (SlackNotifier): Slack notifier instance
-        logger (Logger): Logger instance
+        item (dict): Dữ liệu mục từ Google Sheet
+        db_manager (DatabaseManager): Thể hiện của quản lý cơ sở dữ liệu
+        drive_uploader (GoogleDriveUploader): Thể hiện của trình tải lên Drive
+        email_notifier (EmailNotifier): Thể hiện của thông báo email
+        slack_notifier (SlackNotifier): Thể hiện của thông báo Slack
+        logger (Logger): Thể hiện của logger
 
     Returns:
-        bool: Success or failure
+        bool: Thành công hoặc thất bại
     """
     try:
         logger.info(f"Xử lý mục: {item['id']} - {item['description']}")
-        logger.info(f"Processing item: {item['id']} - {item['description']}")
 
         # Tạo nội dung bằng AI
-        # Generate content using AI
-        ai_generator = AIGenerator(config.AI_API_KEY)
+        if not config.AI_API_KEY:
+            raise Exception("Không có khóa API AI. Vui lòng thiết lập OPENAI_API_KEY hoặc ANTHROPIC_API_KEY trong tệp .env")
+
+        ai_generator = AIGenerator(config.AI_API_KEY, service=config.AI_SERVICE)
         output_file = ai_generator.generate(
             description=item['description'],
             reference_url=item.get('example_asset_url'),
@@ -84,14 +84,12 @@ def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifie
         )
 
         if not output_file:
-            raise Exception("Không thể tạo nội dung / Failed to generate content")
+            raise Exception("Không thể tạo nội dung")
 
         # Tải lên Google Drive
-        # Upload to Google Drive
         drive_url = drive_uploader.upload(output_file, item['description'])
 
         # Lưu vào cơ sở dữ liệu
-        # Save to database
         db_manager.log_success(
             item_id=item['id'],
             description=item['description'],
@@ -101,20 +99,16 @@ def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifie
         )
 
         # Gửi thông báo thành công
-        # Send success notification
         email_notifier.send_success_notification(item, drive_url)
         slack_notifier.send_success_notification(item, drive_url)
 
         logger.info(f"Xử lý thành công mục: {item['id']}")
-        logger.info(f"Successfully processed item: {item['id']}")
         return True
 
     except Exception as e:
         logger.error(f"Lỗi khi xử lý mục {item['id']}: {str(e)}")
-        logger.error(f"Error processing item {item['id']}: {str(e)}")
 
         # Lưu vào cơ sở dữ liệu
-        # Save to database
         db_manager.log_failure(
             item_id=item['id'],
             description=item['description'],
@@ -124,7 +118,6 @@ def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifie
         )
 
         # Gửi thông báo lỗi
-        # Send failure notification
         email_notifier.send_failure_notification(item, str(e))
         slack_notifier.send_failure_notification(item, str(e))
         return False
@@ -132,38 +125,84 @@ def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifie
 def main():
     """
     Hàm chính của ứng dụng
-    Main function of the application
     """
     # Thiết lập logging
-    # Setup logging
     logger = setup_logging()
     logger.info("Bắt đầu quy trình tự động hóa")
-    logger.info("Starting automation workflow")
 
     # Phân tích đối số
-    # Parse arguments
     args = parse_arguments()
 
+    # Tải tệp môi trường tùy chỉnh nếu được chỉ định
+    if args.env:
+        env_path = Path(args.env)
+        if env_path.exists():
+            logger.info(f"Đang tải môi trường từ {env_path}")
+            load_dotenv(env_path, override=True)
+        else:
+            logger.error(f"Không tìm thấy tệp môi trường: {env_path}")
+            return
+    # Nếu không, chúng ta dựa vào config.py đã tải .env.local trước đó
+
+    # Ghi đè các khóa API từ dòng lệnh nếu được cung cấp
+    if args.openai_key:
+        os.environ["OPENAI_API_KEY"] = args.openai_key
+        config.OPENAI_API_KEY = args.openai_key
+        config.AI_API_KEY = args.openai_key
+        config.AI_SERVICE = "openai"
+    elif args.anthropic_key:
+        os.environ["ANTHROPIC_API_KEY"] = args.anthropic_key
+        config.ANTHROPIC_API_KEY = args.anthropic_key
+        config.AI_API_KEY = args.anthropic_key
+        config.AI_SERVICE = "anthropic"
+
     # Đọc dữ liệu từ Google Sheets
-    # Read data from Google Sheets
     sheet_id = args.sheet_id or config.GOOGLE_SHEET_ID
+
+    if not sheet_id:
+        logger.error("Không có Google Sheet ID được cung cấp. Vui lòng đặt GOOGLE_SHEET_ID trong .env hoặc sử dụng --sheet-id")
+        return
+
+    # Kiểm tra xác thực Google tồn tại
+    if not os.path.exists(config.GOOGLE_CREDENTIALS_FILE):
+        logger.error(f"Không tìm thấy tệp xác thực Google: {config.GOOGLE_CREDENTIALS_FILE}")
+        logger.error("Vui lòng đặt tệp xác thực của bạn trong thư mục dữ liệu")
+        return
+
     sheets_reader = GoogleSheetsReader(config.GOOGLE_CREDENTIALS_FILE)
     items = sheets_reader.read_sheet(sheet_id)
 
     if not items:
         logger.error("Không có dữ liệu để xử lý hoặc lỗi đọc Google Sheet")
-        logger.error("No data to process or error reading Google Sheet")
         return
 
     # Khởi tạo các thành phần
-    # Initialize components
     db_manager = DatabaseManager(config.DATABASE_PATH)
+
+    # Kiểm tra ID thư mục Google Drive
+    if not config.DRIVE_FOLDER_ID:
+        logger.error("Không có ID thư mục Google Drive được cung cấp. Vui lòng đặt GOOGLE_DRIVE_FOLDER_ID trong .env")
+        return
+
     drive_uploader = GoogleDriveUploader(config.GOOGLE_CREDENTIALS_FILE, config.DRIVE_FOLDER_ID)
+
+    # Kiểm tra cấu hình email
+    if not all([
+        config.EMAIL_CONFIG["sender_email"],
+        config.EMAIL_CONFIG["sender_password"],
+        config.EMAIL_CONFIG["admin_email"]
+    ]):
+        logger.warning("Cấu hình email không đầy đủ. Thông báo email sẽ không hoạt động đúng.")
+
     email_notifier = EmailNotifier(config.EMAIL_CONFIG)
+
+    # Kiểm tra URL webhook Slack
+    if not config.SLACK_WEBHOOK_URL:
+        logger.warning("URL webhook Slack không được cung cấp. Thông báo Slack sẽ không hoạt động.")
+
     slack_notifier = SlackNotifier(config.SLACK_WEBHOOK_URL)
 
     # Xử lý từng mục
-    # Process each item
     success_count = 0
     failure_count = 0
 
@@ -175,15 +214,12 @@ def main():
             failure_count += 1
 
     # Tạo báo cáo hàng ngày
-    # Generate daily report
     logger.info("Tạo báo cáo hàng ngày")
-    logger.info("Generating daily report")
 
     report_generator = ReportGenerator(config.DATABASE_PATH, config.REPORT_OUTPUT_DIR)
     report_path = report_generator.generate_daily_report()
 
     # Gửi báo cáo qua email
-    # Send report via email
     email_notifier.send_report(
         report_path,
         success_count,
@@ -191,9 +227,7 @@ def main():
     )
 
     logger.info("Hoàn thành quy trình tự động hóa")
-    logger.info("Automation workflow completed")
     logger.info(f"Kết quả: {success_count} thành công, {failure_count} thất bại")
-    logger.info(f"Results: {success_count} successes, {failure_count} failures")
 
 if __name__ == "__main__":
     main()

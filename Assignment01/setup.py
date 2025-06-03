@@ -28,4 +28,17 @@ setup(
             "ai-content-automation=ai_content_automation.cli:main",
         ],
     },
+    package_data={
+        "": [".env.example"],  # Include template only, not for loading
+    },
+    include_package_data=True,
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+    ],
 )
