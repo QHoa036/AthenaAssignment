@@ -1,0 +1,46 @@
+# Môi trường Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Môi trường ảo
+venv/
+ENV/
+env/
+
+# Tệp môi trường
+.env
+.env.local
+.env.*.local
+
+# Thư mục kết quả sinh ra
+assets/generated/
+validation/results/
+
+# Tệp hệ thống
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Tệp nhật ký
+*.log
+logs/

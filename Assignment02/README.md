@@ -1,64 +1,64 @@
-# AI Prompt Engineering for Game Assets
+# Kỹ Thuật Prompt AI Cho Tài Sản Game
 
-This project implements the Athena Assignment 2: AI Prompt Engineering Task for creating high-quality game assets using advanced prompting techniques with AI models.
+Dự án này thực hiện Nhiệm Vụ Athena 2: Kỹ Thuật Prompt AI để tạo ra tài sản game chất lượng cao bằng cách sử dụng các kỹ thuật prompt nâng cao với các mô hình AI.
 
-## Project Overview
+## Tổng Quan Dự Án
 
-This system provides a structured approach to game asset creation using AI models:
+Hệ thống này cung cấp cách tiếp cận có cấu trúc cho việc tạo tài sản game sử dụng các mô hình AI:
 
-1. **Prompt Design Framework** - Methodical approach to creating effective prompts
-2. **Asset Generation** - Scripts to generate assets using various AI models
-3. **Validation Process** - Methods to test and compare generated assets against references
-4. **Documentation** - Comprehensive documentation of the entire process
+1. **Khung Thiết Kế Prompt** - Phương pháp có hệ thống để tạo prompt hiệu quả
+2. **Tạo Tài Sản** - Các script để tạo tài sản sử dụng các mô hình AI khác nhau
+3. **Quy Trình Xác Thực** - Các phương pháp để kiểm tra và so sánh tài sản được tạo ra với tài liệu tham chiếu
+4. **Tài Liệu** - Tài liệu toàn diện về toàn bộ quy trình
 
-## Project Structure
+## Cấu Trúc Dự Án
 
 ```
 Assignment02/
-├── src/                     # Source code
-│   ├── prompt_generator.py  # Prompt generation utilities
-│   ├── asset_generator.py   # Asset generation using AI models
-│   ├── validation.py        # Validation and comparison tools
-│   └── config.py            # Configuration settings
-├── prompts/                 # Prompt templates and examples
-├── assets/                  # Generated and reference assets
-│   ├── reference/           # Reference game assets
-│   └── generated/           # AI-generated assets
-├── validation/              # Validation results
-└── documentation/           # Process documentation
-    ├── prompt_design.md     # Prompt design methodology
-    ├── testing.md           # Testing process documentation
-    └── iterations.md        # Iteration history and improvements
+├── src/                     # Mã nguồn
+│   ├── prompt_generator.py  # Tiện ích tạo prompt
+│   ├── asset_generator.py   # Tạo tài sản sử dụng các mô hình AI
+│   ├── validation.py        # Công cụ xác thực và so sánh
+│   └── config.py            # Cài đặt cấu hình
+├── prompts/                 # Mẫu và ví dụ prompt
+├── assets/                  # Tài sản được tạo ra và tham chiếu
+│   ├── reference/           # Tài sản game tham chiếu
+│   └── generated/           # Tài sản được tạo bằng AI
+├── validation/              # Kết quả xác thực
+└── documentation/           # Tài liệu quy trình
+    ├── prompt_design.md     # Phương pháp thiết kế prompt
+    ├── testing.md           # Tài liệu quy trình kiểm tra
+    └── iterations.md        # Lịch sử lặp lại và cải tiến
 ```
 
-## Prompt Engineering Process
+## Quy Trình Kỹ Thuật Prompt
 
-Our approach to prompt engineering follows these key steps:
+Cách tiếp cận của chúng tôi đối với kỹ thuật prompt tuân theo các bước chính sau:
 
-1. **Analysis**: Study reference game assets to understand their visual characteristics
-2. **Structure Design**: Create prompt structures with specific sections
-3. **Parameter Tuning**: Experiment with model parameters for optimal results
-4. **Iteration**: Refine prompts based on testing results
-5. **Validation**: Compare generated assets against references
-6. **Documentation**: Document each stage of the process
+1. **Phân Tích**: Nghiên cứu tài sản game tham chiếu để hiểu đặc điểm trực quan của chúng
+2. **Thiết Kế Cấu Trúc**: Tạo cấu trúc prompt với các phần cụ thể
+3. **Tinh Chỉnh Tham Số**: Thử nghiệm với các tham số mô hình để có kết quả tối ưu
+4. **Lặp Lại**: Tinh chỉnh prompt dựa trên kết quả kiểm tra
+5. **Xác Thực**: So sánh tài sản được tạo ra với tài liệu tham chiếu
+6. **Tài Liệu**: Ghi lại từng giai đoạn của quy trình
 
-## Setup and Usage
+## Cài Đặt và Sử Dụng
 
-1. Install dependencies:
+1. Cài đặt các gói phụ thuộc:
    ```
    pip install -r requirements.txt
    ```
 
-2. Configure settings in `src/config.py`
+2. Cấu hình cài đặt trong `src/config.py`
 
-3. Generate prompts and assets:
+3. Tạo prompt và tài sản:
    ```
    python src/asset_generator.py
    ```
 
-4. Validate results:
+4. Xác thực kết quả:
    ```
    python src/validation.py
    ```
 
-For detailed documentation on each step of the process, see the files in the `documentation` directory.
+Để xem tài liệu chi tiết về từng bước của quy trình, hãy xem các tệp trong thư mục `documentation`.

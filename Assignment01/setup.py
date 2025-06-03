@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 setup(
     name="ai_content_automation",
     version="0.1.0",
-    description="Automation workflow for AI content generation",
+    description="Quy trình tự động hóa tạo nội dung bằng AI",
     author="Athena Assignment",
     packages=find_packages(include=["ai_content_automation", "ai_content_automation.*"]),
     python_requires=">=3.8.0",
@@ -29,7 +29,7 @@ setup(
         ],
     },
     package_data={
-        "": [".env.example"],  # Include template only, not for loading
+        "": [".env.example"],  # Chỉ bao gồm file mẫu, không dùng để tải
     },
     include_package_data=True,
     classifiers=[

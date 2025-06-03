@@ -1,177 +1,177 @@
-# Prompt Engineering Iteration History
+# Lịch Sử Lặp Lại Kỹ Thuật Prompt
 
-This document tracks the evolution of our game asset prompts through multiple iterations, documenting improvements, challenges, and learning outcomes.
+Tài liệu này theo dõi sự phát triển của các prompt tài sản game của chúng tôi qua nhiều lần lặp lại, ghi lại các cải tiến, thách thức và kết quả học tập.
 
-## Iteration Framework
+## Khung Lặp Lại
 
-Each iteration follows this documentation structure:
+Mỗi lần lặp lại tuân theo cấu trúc tài liệu này:
 
-1. **Iteration Goal**: Specific improvement target
-2. **Prompt Modifications**: Changes made from previous version
-3. **Results Analysis**: Outcomes and observations
-4. **Learning Outcomes**: Key insights gained
-5. **Next Steps**: Planned changes for future iterations
+1. **Mục Tiêu Lặp Lại**: Mục tiêu cải thiện cụ thể
+2. **Sửa Đổi Prompt**: Thay đổi so với phiên bản trước
+3. **Phân Tích Kết Quả**: Kết quả và quan sát
+4. **Kết Quả Học Tập**: Những hiểu biết chính thu được
+5. **Bước Tiếp Theo**: Các thay đổi dự kiến cho các lần lặp lại trong tương lai
 
-## Sample Iterations
+## Các Lần Lặp Lại Mẫu
 
-### Iteration 1: Baseline Establishment
+### Lặp Lại 1: Thiết Lập Cơ Sở
 
-#### Goal
-Establish baseline performance with standard prompting techniques for a 2D game character.
+#### Mục Tiêu
+Thiết lập hiệu suất cơ sở với các kỹ thuật prompt tiêu chuẩn cho nhân vật game 2D.
 
-#### Prompt Used
+#### Prompt Đã Sử Dụng
 ```
-Create a 2D character sprite for a fantasy RPG game. The character should be a wizard with blue robes, holding a staff, and have a long white beard. Make it in pixel art style.
-```
-
-#### Results Analysis
-- Generated basic wizard character recognizable as the target
-- Proportions were inconsistent with game art standards
-- Color palette lacked cohesion with intended game style
-- Limited detail in important character features
-
-#### Learning Outcomes
-- Basic descriptive prompts produce recognizable but generic results
-- Need more specific art style reference points
-- Technical specifications required for usable game assets
-- Character proportion guidance needed
-
-#### Next Steps
-- Add specific pixel dimensions
-- Reference existing art style examples
-- Include silhouette guidance
-- Specify viewing angle
-
-### Iteration 2: Technical Specification Integration
-
-#### Goal
-Improve technical accuracy and usability of generated assets.
-
-#### Prompt Modifications
-```
-Create a 2D character sprite for a fantasy RPG game in the style of Final Fantasy VI. The character should be:
-- A wizard with medium blue robes with gold trim
-- Holding a wooden staff with crystal top
-- Have a white beard reaching mid-chest
-- Front-facing perspective
-- 32x32 pixel resolution
-- Clear silhouette readable at small size
-- Transparent background
-- Limited to 16-color palette
+Tạo một sprite nhân vật 2D cho game RPG fantasy. Nhân vật nên là một phù thủy với áo choàng màu xanh, cầm một cây gậy, và có bộ râu trắng dài. Làm theo phong cách pixel art.
 ```
 
-#### Results Analysis
-- Improved technical compliance with game specifications
-- Better proportion consistency
-- More appropriate level of detail for intended resolution
-- Style closer to reference but still lacking distinctive elements
+#### Phân Tích Kết Quả
+- Tạo ra nhân vật phù thủy cơ bản có thể nhận ra như mục tiêu
+- Tỷ lệ không phù hợp với tiêu chuẩn nghệ thuật game
+- Bảng màu thiếu sự gắn kết với phong cách game dự định
+- Chi tiết hạn chế ở các đặc điểm nhân vật quan trọng
 
-#### Learning Outcomes
-- Technical specifications significantly improve usability
-- Reference to existing game style provides better direction
-- Pixel constraints help focus detail appropriately
-- Still need better color palette management
+#### Kết Quả Học Tập
+- Các prompt mô tả cơ bản tạo ra kết quả có thể nhận ra nhưng chung chung
+- Cần các điểm tham chiếu phong cách nghệ thuật cụ thể hơn
+- Yêu cầu thông số kỹ thuật cho tài sản game có thể sử dụng
+- Cần hướng dẫn về tỷ lệ nhân vật
 
-#### Next Steps
-- Add specific color hex codes
-- Provide more detailed pose guidance
-- Include negative prompts for unwanted elements
+#### Bước Tiếp Theo
+- Thêm kích thước pixel cụ thể
+- Tham chiếu các ví dụ phong cách nghệ thuật hiện có
+- Bao gồm hướng dẫn về đường viền
+- Xác định góc nhìn
 
-### Iteration 3: Visual Reference Integration
+### Lặp Lại 2: Tích Hợp Thông Số Kỹ Thuật
 
-#### Goal
-Achieve closer matching to reference game art style and improve artistic cohesion.
+#### Mục Tiêu
+Cải thiện độ chính xác kỹ thuật và khả năng sử dụng của tài sản được tạo ra.
 
-#### Prompt Modifications
+#### Sửa Đổi Prompt
 ```
-Create a 2D character sprite for a fantasy RPG game in the exact pixel art style of Final Fantasy VI (SNES era).
-
-Technical Specifications:
-- 32x32 pixel resolution
-- Transparent background
-- Limited palette using these exact colors: #3A66A7 (robe primary), #C9D9FB (robe highlights), #FCFCE0 (beard), #8F563B (staff)
-
-Character Description:
-- Elderly wizard with proportions matching FFVI character sprites (2.5 heads tall)
-- Medium blue robes with light blue highlights on edges
-- Standing in the FFVI standard front-facing idle pose
-- White beard reaching mid-chest, clearly defined against the robe
-- Holding a wooden staff with glowing crystal top slightly off-center
-
-DO NOT include:
-- Modern pixel art techniques like dithering
-- Black outlines thicker than 1px
-- Facial details beyond eyes and basic features
-- Realistic proportions or shading
+Tạo một sprite nhân vật 2D cho game RPG fantasy theo phong cách của Final Fantasy VI. Nhân vật nên là:
+- Một phù thủy với áo choàng màu xanh dương trung bình với viền vàng
+- Cầm một cây gậy gỗ với đầu pha lê
+- Có bộ râu trắng dài đến giữa ngực
+- Góc nhìn chính diện
+- Độ phân giải 32x32 pixel
+- Đường viền rõ ràng có thể đọc được ở kích thước nhỏ
+- Nền trong suốt
+- Giới hạn ở bảng màu 16 màu
 ```
 
-#### Results Analysis
-- Significant improvement in style matching
-- Color accuracy much closer to reference
-- Proportions and silhouette appropriate for game context
-- Technical specifications fully met
+#### Phân Tích Kết Quả
+- Cải thiện sự tuân thủ kỹ thuật với thông số game
+- Tính nhất quán về tỷ lệ tốt hơn
+- Mức độ chi tiết phù hợp hơn cho độ phân giải dự định
+- Phong cách gần với tham chiếu hơn nhưng vẫn thiếu các yếu tố đặc trưng
 
-#### Learning Outcomes
-- Explicit color codes produce much more accurate results
-- Negative prompts effectively prevent common issues
-- Reference to specific game titles helps the AI understand style
-- Technical and artistic guidance must be balanced
+#### Kết Quả Học Tập
+- Thông số kỹ thuật cải thiện đáng kể khả năng sử dụng
+- Tham chiếu đến phong cách game hiện có cung cấp hướng dẫn tốt hơn
+- Các ràng buộc pixel giúp tập trung chi tiết một cách thích hợp
+- Vẫn cần quản lý bảng màu tốt hơn
 
-#### Next Steps
-- Create template structure for different asset types
-- Test with different AI models
-- Add animation frame guidance for sprite sets
+#### Bước Tiếp Theo
+- Thêm mã màu hex cụ thể
+- Cung cấp hướng dẫn tư thế chi tiết hơn
+- Bao gồm các prompt tiêu cực cho các yếu tố không mong muốn
 
-## Advanced Iterations
+### Lặp Lại 3: Tích Hợp Tham Chiếu Trực Quan
 
-### Iteration 4: Model-Specific Optimization
+#### Mục Tiêu
+Đạt được sự phù hợp gần hơn với phong cách nghệ thuật game tham chiếu và cải thiện sự gắn kết nghệ thuật.
 
-#### Goal
-Optimize prompts for specific AI model characteristics to maximize quality.
-
-#### Prompt Modifications
+#### Sửa Đổi Prompt
 ```
-[Model-specific directives based on testing results]
+Tạo một sprite nhân vật 2D cho game RPG fantasy theo đúng phong cách pixel art của Final Fantasy VI (thời đại SNES).
+
+Thông Số Kỹ Thuật:
+- Độ phân giải 32x32 pixel
+- Nền trong suốt
+- Bảng màu giới hạn sử dụng chính xác các màu này: #3A66A7 (áo choàng chính), #C9D9FB (điểm nhấn áo choàng), #FCFCE0 (râu), #8F563B (gậy)
+
+Mô Tả Nhân Vật:
+- Phù thủy già với tỷ lệ phù hợp với sprite nhân vật FFVI (cao 2.5 đầu)
+- Áo choàng màu xanh dương trung bình với điểm nhấn xanh nhạt ở các cạnh
+- Đứng ở tư thế đứng yên chính diện tiêu chuẩn của FFVI
+- Râu trắng dài đến giữa ngực, được định nghĩa rõ ràng so với áo choàng
+- Cầm một cây gậy gỗ với đầu pha lê phát sáng hơi lệch tâm
+
+KHÔNG bao gồm:
+- Kỹ thuật pixel art hiện đại như dithering
+- Đường viền đen dày hơn 1px
+- Chi tiết khuôn mặt ngoài mắt và các đặc điểm cơ bản
+- Tỷ lệ hoặc bóng đổ thực tế
 ```
 
-### Iteration 5: Style Consistency Across Asset Sets
+#### Phân Tích Kết Quả
+- Cải thiện đáng kể trong việc phù hợp phong cách
+- Độ chính xác màu sắc gần với tham chiếu hơn nhiều
+- Tỷ lệ và đường viền phù hợp với ngữ cảnh game
+- Đáp ứng đầy đủ thông số kỹ thuật
 
-#### Goal
-Ensure visual cohesion across multiple assets in the same game world.
+#### Kết Quả Học Tập
+- Mã màu rõ ràng tạo ra kết quả chính xác hơn nhiều
+- Prompt tiêu cực ngăn chặn hiệu quả các vấn đề phổ biến
+- Tham chiếu đến tiêu đề game cụ thể giúp AI hiểu phong cách
+- Hướng dẫn kỹ thuật và nghệ thuật phải cân bằng
 
-#### Prompt Modifications
+#### Bước Tiếp Theo
+- Tạo cấu trúc mẫu cho các loại tài sản khác nhau
+- Kiểm tra với các mô hình AI khác nhau
+- Thêm hướng dẫn khung hình hoạt ảnh cho bộ sprite
+
+## Các Lần Lặp Lại Nâng Cao
+
+### Lặp Lại 4: Tối Ưu Hóa Đặc Thù Cho Mô Hình
+
+#### Mục Tiêu
+Tối ưu hóa prompt cho đặc điểm của mô hình AI cụ thể để tối đa hóa chất lượng.
+
+#### Sửa Đổi Prompt
 ```
-[Asset consistency directives]
+[Chỉ thị đặc thù cho mô hình dựa trên kết quả kiểm tra]
 ```
 
-## Final Iteration Framework
+### Lặp Lại 5: Tính Nhất Quán Phong Cách Giữa Các Bộ Tài Sản
 
-Our final iteration framework uses this template structure:
+#### Mục Tiêu
+Đảm bảo sự gắn kết trực quan giữa nhiều tài sản trong cùng một thế giới game.
+
+#### Sửa Đổi Prompt
+```
+[Chỉ thị về tính nhất quán tài sản]
+```
+
+## Khung Lặp Lại Cuối Cùng
+
+Khung lặp lại cuối cùng của chúng tôi sử dụng cấu trúc mẫu này:
 
 ```
-[ASSET TYPE] for [GAME GENRE] in [STYLE REFERENCE]
+[LOẠI TÀI SẢN] cho [THỂ LOẠI GAME] trong [THAM CHIẾU PHONG CÁCH]
 
-TECHNICAL SPECIFICATIONS:
-- Resolution: [EXACT DIMENSIONS]
-- Format: [FILE FORMAT]
-- Color palette: [SPECIFIC COLOR CODES]
-- [OTHER TECHNICAL REQUIREMENTS]
+THÔNG SỐ KỸ THUẬT:
+- Độ phân giải: [KÍCH THƯỚC CHÍNH XÁC]
+- Định dạng: [ĐỊNH DẠNG TỆP]
+- Bảng màu: [MÃ MÀU CỤ THỂ]
+- [CÁC YÊU CẦU KỸ THUẬT KHÁC]
 
-VISUAL ATTRIBUTES:
-- [PRIMARY VISUAL CHARACTERISTICS]
-- [PROPORTION GUIDANCE]
-- [PERSPECTIVE INFORMATION]
-- [DISTINCTIVE ELEMENTS]
+THUỘC TÍNH TRỰC QUAN:
+- [ĐẶC ĐIỂM TRỰC QUAN CHÍNH]
+- [HƯỚNG DẪN TỶ LỆ]
+- [THÔNG TIN GÓC NHÌN]
+- [YẾU TỐ ĐẶC TRƯNG]
 
-CONTEXTUAL REFERENCE:
-- Style matching: [SPECIFIC REFERENCE]
-- Functional requirements: [GAMEPLAY NEEDS]
-- Setting context: [WORLD/ENVIRONMENT]
+THAM CHIẾU NGỮ CẢNH:
+- Phù hợp phong cách: [THAM CHIẾU CỤ THỂ]
+- Yêu cầu chức năng: [NHU CẦU GAMEPLAY]
+- Ngữ cảnh bối cảnh: [THẾ GIỚI/MÔI TRƯỜNG]
 
-DO NOT INCLUDE:
-- [UNWANTED ELEMENTS]
-- [STYLE MISMATCHES]
-- [TECHNICAL PROBLEMS]
+KHÔNG BAO GỒM:
+- [YẾU TỐ KHÔNG MONG MUỐN]
+- [KHÔNG PHÙ HỢP VỀ PHONG CÁCH]
+- [VẤN ĐỀ KỸ THUẬT]
 
-[MODEL-SPECIFIC PARAMETERS]
+[THAM SỐ ĐẶC THÙ CHO MÔ HÌNH]
 ```
