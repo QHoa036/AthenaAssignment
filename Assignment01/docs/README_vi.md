@@ -18,7 +18,7 @@ Assignment01/
 │   │   ├── ai_generator.py    # Tạo nội dung bằng AI
 │   │   ├── chart_generator.py # Tạo biểu đồ phân tích
 │   │   ├── report_generator.py # Tạo báo cáo từ dữ liệu
-│   │   └── html_report_generator.py # Tạo báo cáo HTML
+│   │   └── pdf_report_generator.py # Tạo báo cáo PDF
 │   ├── notifications/        # Dịch vụ thông báo
 │   │   └── notifier.py        # Gửi thông báo qua email và Slack
 │   ├── persistence/          # Lưu trữ dữ liệu
@@ -50,15 +50,30 @@ Assignment01/
 
 6. **Báo cáo phân tích**: Mỗi ngày, hệ thống tạo báo cáo phân tích với biểu đồ thống kê và gửi qua email cho quản trị viên.
 
-## Cài đặt
+## Cài đặt và Sử dụng
 
 1. Cài đặt các thư viện phụ thuộc:
+   ```
+   pip install -r requirements.txt
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+2. Thiết lập xác thực Google API:
+   - Tạo dự án mới trong [Google Cloud Console](https://console.cloud.google.com/)
+   - Kích hoạt Google Sheets API và Google Drive API cho dự án
+   - Tạo Service Account và tải xuống file JSON credentials
+   - Đặt file này vào thư mục `data/google_credentials.json`
+   - Tạo Google Sheet với các cột sau: `id`, `description`, `example_asset_url`, `output_format`, `model`
+   - Chia sẻ Google Sheet của bạn với địa chỉ email của Service Account
+   
+   Ví dụ cấu trúc dữ liệu Google Sheet:
+   
+   | id | description | example_asset_url | output_format | model |
+   |----|-------------|-------------------|---------------|-------|
+   | asset-001 | Logo game phong cách pixel art với hình con rồng | https://example.com/reference/dragon_logo.jpg | PNG | openai |
+   | asset-002 | Nhân vật game chibi với kiếm và áo giáp | https://example.com/reference/warrior_character.jpg | PNG | anthropic |
+   | asset-003 | Cảnh nền rừng nhiệt đới với thác nước | https://example.com/reference/jungle_background.jpg | JPG | openai |
 
-2. Thiết lập các biến môi trường trong tệp `.env`:
+3. Thiết lập các biến môi trường trong tệp `.env`:
    ```
    # Thông tin xác thực Google API
    GOOGLE_APPLICATION_CREDENTIALS=./data/google_credentials.json

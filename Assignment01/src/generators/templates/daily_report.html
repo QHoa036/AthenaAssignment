@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Báo cáo hàng ngày - {{ date }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .chart-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Báo cáo hàng ngày - Hệ thống tạo tài sản AI</h1>
+        <p>Ngày: {{ date }}</p>
+
+        <div class="summary">
+            <h2>Tóm tắt</h2>
+            <p>Tổng số mục xử lý: {{ total_items }}</p>
+            <p>Thành công: <span class="success">{{ success_count }}</span></p>
+            <p>Thất bại: <span class="error">{{ failure_count }}</span></p>
+            <p>Tỷ lệ thành công: {{ success_rate }}%</p>
+        </div>
+
+        <h2>Chi tiết các mục đã xử lý</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Mô tả</th>
+                    <th>Thời gian</th>
+                    <th>Trạng thái</th>
+                    <th>Đường dẫn</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in processed_items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.timestamp }}</td>
+                    <td class="{% if item.status == 'success' %}success{% else %}error{% endif %}">
+                        {{ item.status }}
+                    </td>
+                    <td>
+                        {% if item.url %}
+                        <a href="{{ item.url }}" target="_blank">Xem tài sản</a>
+                        {% else %}
+                        N/A
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="chart-container">
+            <h2>Biểu đồ phân tích</h2>
+            <img src="{{ chart_path }}" alt="Biểu đồ phân tích" style="max-width:100%;">
+        </div>
+
+        <div class="footer">
+            <p>Báo cáo này được tạo tự động bởi hệ thống tạo tài sản AI - {{ timestamp }}</p>
+        </div>
+    </div>
+</body>
+</html>

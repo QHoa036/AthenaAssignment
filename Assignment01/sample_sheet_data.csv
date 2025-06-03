@@ -1,0 +1,11 @@
+id,description,example_asset_url,output_format,model
+asset-001,Logo game phong cách pixel art với hình con rồng,https://example.com/reference/dragon_logo.jpg,PNG,openai
+asset-002,Nhân vật game chibi với kiếm và áo giáp,https://example.com/reference/warrior_character.jpg,PNG,anthropic
+asset-003,Cảnh nền rừng nhiệt đới với thác nước,https://example.com/reference/jungle_background.jpg,JPG,openai
+asset-004,Biểu tượng kỹ năng phép thuật lửa,https://example.com/reference/fire_spell.png,PNG,anthropic
+asset-005,Hoạt ảnh nhân vật nhảy,https://example.com/reference/jump_animation.gif,GIF,openai
+asset-006,Âm thanh hiệu ứng nổ,https://example.com/reference/explosion_sound.mp3,MP3,openai
+asset-007,Texture đá cổ đại có rêu,https://example.com/reference/mossy_stone.jpg,JPG,anthropic
+asset-008,Giao diện menu chính theo phong cách cổ điển,https://example.com/reference/retro_menu.png,PNG,openai
+asset-009,Nhân vật phản diện với áo choàng đen,https://example.com/reference/villain.jpg,PNG,anthropic
+asset-010,Hiệu ứng ánh sáng ma thuật,https://example.com/reference/magic_light.gif,GIF,openai

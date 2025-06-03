@@ -32,7 +32,7 @@ Assignment01/
 │   │   ├── ai_generator.py    # AI content generator
 │   │   ├── chart_generator.py # Analytics chart generator
 │   │   ├── report_generator.py # Report generator
-│   │   └── html_report_generator.py # HTML report generator
+│   │   └── pdf_report_generator.py # PDF report generator
 │   ├── notifications/        # Notification services
 │   │   └── notifier.py        # Email and Slack notifier
 │   ├── persistence/          # Data persistence
@@ -58,7 +58,23 @@ Assignment01/
    pip install -r requirements.txt
    ```
 
-2. Configure your settings in `.env` file:
+2. Set up Google API authentication:
+   - Create a new project in [Google Cloud Console](https://console.cloud.google.com/)
+   - Enable Google Sheets API and Google Drive API for the project
+   - Create a Service Account and download the JSON credentials file
+   - Place this file in the `data/google_credentials.json` directory
+   - Create a Google Sheet with the following columns: `id`, `description`, `example_asset_url`, `output_format`, `model`
+   - Share your Google Sheet with the Service Account email address
+
+   Example Google Sheet data structure:
+
+   | id | description | example_asset_url | output_format | model |
+   |----|-------------|-------------------|---------------|-------|
+   | asset-001 | Logo game phong cách pixel art với hình con rồng | https://example.com/reference/dragon_logo.jpg | PNG | openai |
+   | asset-002 | Nhân vật game chibi với kiếm và áo giáp | https://example.com/reference/warrior_character.jpg | PNG | anthropic |
+   | asset-003 | Cảnh nền rừng nhiệt đới với thác nước | https://example.com/reference/jungle_background.jpg | JPG | openai |
+
+3. Configure your settings in `.env` file:
    ```
    # Google API credentials
    GOOGLE_APPLICATION_CREDENTIALS=./data/google_credentials.json

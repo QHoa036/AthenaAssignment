@@ -32,7 +32,7 @@ Assignment01/
 │   │   ├── ai_generator.py          # Tạo nội dung bằng AI
 │   │   ├── chart_generator.py       # Tạo biểu đồ phân tích
 │   │   ├── report_generator.py      # Tạo báo cáo từ dữ liệu
-│   │   └── html_report_generator.py # Tạo báo cáo HTML
+│   │   └── pdf_report_generator.py # Tạo báo cáo PDF
 │   ├── notifications/                # Dịch vụ thông báo
 │   │   └── notifier.py               # Gửi thông báo qua email và Slack
 │   ├── persistence/                 # Lưu trữ dữ liệu
@@ -61,7 +61,7 @@ Assignment01/
 5. **Ghi log và báo cáo**:
    - Module `database.py` lưu trữ kết quả xử lý
    - Module `report_generator.py` và `chart_generator.py` tạo báo cáo và biểu đồ phân tích
-   - Module `html_report_generator.py` tạo báo cáo HTML để gửi qua email
+   - Module `pdf_report_generator.py` tạo báo cáo PDF để gửi qua email
 
 ## 4. Công Nghệ Sử Dụng
 
@@ -75,7 +75,7 @@ Assignment01/
 - **Tương tác API**: requests, google-api-python-client
 - **Cơ sở dữ liệu**: sqlite3
 - **Tạo biểu đồ**: matplotlib, seaborn
-- **Tạo báo cáo**: jinja2
+- **Tạo báo cáo**: jinja2, weasyprint
 - **Xử lý đa luồng**: concurrent.futures
 
 ## 5. Kết Quả Đạt Được

@@ -54,3 +54,6 @@ google_credentials.json
 *.swp
 *.swo
 .DS_Store
+
+# Script files
+venv/

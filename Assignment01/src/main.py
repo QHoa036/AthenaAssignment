@@ -12,6 +12,9 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 
+# Thêm thư mục gốc vào đường dẫn để import config
+sys.path.append(str(Path(__file__).parent.parent))
+
 # Import các module tự tạo
 from integrations import GoogleSheetsReader, GoogleDriveUploader
 from notifications import EmailNotifier, SlackNotifier
@@ -51,9 +54,11 @@ def parse_arguments():
     parser.add_argument('--env', help='Đường dẫn đến tệp .env để sử dụng')
     parser.add_argument('--openai-key', help='Khóa API OpenAI')
     parser.add_argument('--anthropic-key', help='Khóas API Anthropic')
+    parser.add_argument('--skip-google-auth', action='store_true', help='Bỏ qua kiểm tra xác thực Google (chỉ dùng cho debug)')
+    parser.add_argument('--debug', action='store_true', help='Chạy ở chế độ debug, bỏ qua một số kiểm tra')
     return parser.parse_args()
 
-def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifier, logger):
+def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifier, logger, debug_mode=False):
     """
     Xử lý một mục từ Google Sheet và tạo nội dung
 
@@ -64,6 +69,7 @@ def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifie
         email_notifier (EmailNotifier): Thể hiện của thông báo email
         slack_notifier (SlackNotifier): Thể hiện của thông báo Slack
         logger (Logger): Thể hiện của logger
+        debug_mode (bool): Chế độ debug, bỏ qua một số kiểm tra và sử dụng giả lập
 
     Returns:
         bool: Thành công hoặc thất bại
@@ -72,16 +78,28 @@ def process_item(item, db_manager, drive_uploader, email_notifier, slack_notifie
         logger.info(f"Xử lý mục: {item['id']} - {item['description']}")
 
         # Tạo nội dung bằng AI
-        if not config.AI_API_KEY:
+        if not config.AI_API_KEY and not debug_mode:
             raise Exception("Không có khóa API AI. Vui lòng thiết lập OPENAI_API_KEY hoặc ANTHROPIC_API_KEY trong tệp .env")
 
-        ai_generator = AIGenerator(config.AI_API_KEY, service=config.AI_SERVICE)
-        output_file = ai_generator.generate(
-            description=item['description'],
-            reference_url=item.get('example_asset_url'),
-            output_format=item['output_format'],
-            model=item['model']
-        )
+        if debug_mode:
+            # Tạo giả lập đầu ra trong chế độ debug
+            logger.warning("Chế độ debug: Giả lập tạo nội dung AI")
+            temp_dir = Path(config.DATA_DIR) / "temp"
+            temp_dir.mkdir(exist_ok=True)
+            output_file = temp_dir / f"debug_output_{item['id']}.{item['output_format'].lower()}"
+            
+            # Tạo file giả lập trống
+            with open(output_file, 'w') as f:
+                f.write(f"Dữ liệu giả lập cho {item['description']}")
+        else:
+            # Sử dụng AIGenerator thực tế
+            ai_generator = AIGenerator(config.AI_API_KEY, service=config.AI_SERVICE)
+            output_file = ai_generator.generate(
+                description=item['description'],
+                reference_url=item.get('example_asset_url'),
+                output_format=item['output_format'],
+                model=item['model']
+            )
 
         if not output_file:
             raise Exception("Không thể tạo nội dung")
@@ -163,14 +181,29 @@ def main():
         logger.error("Không có Google Sheet ID được cung cấp. Vui lòng đặt GOOGLE_SHEET_ID trong .env hoặc sử dụng --sheet-id")
         return
 
-    # Kiểm tra xác thực Google tồn tại
-    if not os.path.exists(config.GOOGLE_CREDENTIALS_FILE):
+    # Kiểm tra xác thực Google tồn tại, trừ khi được bỏ qua trong chế độ debug
+    if not os.path.exists(config.GOOGLE_CREDENTIALS_FILE) and not (args.skip_google_auth or args.debug):
         logger.error(f"Không tìm thấy tệp xác thực Google: {config.GOOGLE_CREDENTIALS_FILE}")
         logger.error("Vui lòng đặt tệp xác thực của bạn trong thư mục dữ liệu")
+        logger.error("Hoặc chạy với cờ --skip-google-auth hoặc --debug để bỏ qua kiểm tra này")
         return
-
-    sheets_reader = GoogleSheetsReader(config.GOOGLE_CREDENTIALS_FILE)
-    items = sheets_reader.read_sheet(sheet_id)
+    
+    if args.skip_google_auth or args.debug:
+        logger.warning("Chế độ debug: Bỏ qua kiểm tra xác thực Google")
+        # Sử dụng dữ liệu mẫu cho mục đích debug
+        items = [
+            {
+                'id': 'debug-1',
+                'description': 'Hình ảnh mẫu cho debug',
+                'example_asset_url': 'https://example.com/sample.jpg',
+                'output_format': 'PNG',
+                'model': 'openai'
+            }
+        ]
+    else:
+        # Đọc dữ liệu thực tế từ Google Sheets
+        sheets_reader = GoogleSheetsReader(config.GOOGLE_CREDENTIALS_FILE)
+        items = sheets_reader.read_sheet(sheet_id)
 
     if not items:
         logger.error("Không có dữ liệu để xử lý hoặc lỗi đọc Google Sheet")
@@ -180,11 +213,21 @@ def main():
     db_manager = DatabaseManager(config.DATABASE_PATH)
 
     # Kiểm tra ID thư mục Google Drive
-    if not config.DRIVE_FOLDER_ID:
+    if not config.DRIVE_FOLDER_ID and not (args.skip_google_auth or args.debug):
         logger.error("Không có ID thư mục Google Drive được cung cấp. Vui lòng đặt GOOGLE_DRIVE_FOLDER_ID trong .env")
         return
 
-    drive_uploader = GoogleDriveUploader(config.GOOGLE_CREDENTIALS_FILE, config.DRIVE_FOLDER_ID)
+    if args.skip_google_auth or args.debug:
+        # Tạo đối tượng giả lập trong chế độ debug
+        class DebugDriveUploader:
+            def upload(self, file_path, description):
+                logger.info(f"CHẾ ĐỘ DEBUG: Giả lập tải lên {file_path} với mô tả '{description}'")
+                return f"https://drive.google.com/debug-file-url"
+        
+        drive_uploader = DebugDriveUploader()
+        logger.warning("Chế độ debug: Sử dụng trình tải lên Drive giả lập")
+    else:
+        drive_uploader = GoogleDriveUploader(config.GOOGLE_CREDENTIALS_FILE, config.DRIVE_FOLDER_ID)
 
     # Kiểm tra cấu hình email
     if not all([
@@ -207,7 +250,7 @@ def main():
     failure_count = 0
 
     for item in items:
-        success = process_item(item, db_manager, drive_uploader, email_notifier, slack_notifier, logger)
+        success = process_item(item, db_manager, drive_uploader, email_notifier, slack_notifier, logger, debug_mode=(args.skip_google_auth or args.debug))
         if success:
             success_count += 1
         else:

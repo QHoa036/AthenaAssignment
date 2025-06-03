@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Báo cáo hàng tuần - {{ start_date }} - {{ end_date }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .progress-container {
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            height: 20px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #2ecc71;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Báo cáo hàng tuần / Weekly Report</h1>
+            <h2>{{ start_date }} đến / to {{ end_date }}</h2>
+        </div>
+
+        <div class="chart-container">
+            <h2>Biểu đồ phân tích / Analytics Chart</h2>
+            <img src="charts/{{ chart_filename }}" alt="Biểu đồ phân tích tuần">
+        </div>
+
+        <h2>Tóm tắt theo ngày / Daily Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ngày / Date</th>
+                    <th>Tổng số / Total</th>
+                    <th>Thành công / Success</th>
+                    <th>Thất bại / Failure</th>
+                    <th>Tỷ lệ / Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in daily_stats %}
+                <tr>
+                    <td>{{ day.date }}</td>
+                    <td>{{ day.total_count }}</td>
+                    <td>{{ day.success_count }}</td>
+                    <td>{{ day.failure_count }}</td>
+                    <td>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: {{ day.success_rate }}%"></div>
+                        </div>
+                        {{ "%.1f"|format(day.success_rate) }}%
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <footer>
+            <p>Báo cáo được tạo tự động vào {{ timestamp }}</p>
+            <p>Report automatically generated at {{ timestamp }}</p>
+        </footer>
+    </div>
+</body>
+</html>

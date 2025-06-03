@@ -12,7 +12,7 @@ import sqlite3
 from pathlib import Path
 
 from .chart_generator import ChartGenerator
-from .html_report_generator import HTMLReportGenerator
+from .pdf_report_generator import PDFReportGenerator
 
 class ReportGenerator:
     """
@@ -34,9 +34,9 @@ class ReportGenerator:
         # Đảm bảo thư mục đầu ra tồn tại
         os.makedirs(output_dir, exist_ok=True)
 
-        # Khởi tạo các đối tượng tạo biểu đồ và HTML
+        # Khởi tạo các đối tượng tạo biểu đồ và PDF
         self.chart_generator = ChartGenerator(output_dir)
-        self.html_generator = HTMLReportGenerator()
+        self.pdf_generator = PDFReportGenerator()
 
     def generate_daily_report(self, date=None):
         """
@@ -71,11 +71,11 @@ class ReportGenerator:
                 daily_stats['failure_count']
             )
 
-            # Tạo báo cáo HTML
-            report_filename = f"report_{date.strftime('%Y%m%d')}.html"
+            # Tạo báo cáo PDF
+            report_filename = f"report_{date.strftime('%Y%m%d')}.pdf"
             report_path = os.path.join(self.output_dir, report_filename)
 
-            self.html_generator.generate_daily_report(
+            self.pdf_generator.generate_daily_report(
                 report_path,
                 date,
                 daily_stats,
@@ -126,11 +126,11 @@ class ReportGenerator:
                 weekly_stats
             )
 
-            # Tạo báo cáo HTML
-            report_filename = f"weekly_report_{start_date.strftime('%Y%m%d')}_{end_date.strftime('%Y%m%d')}.html"
+            # Tạo báo cáo PDF
+            report_filename = f"weekly_report_{start_date.strftime('%Y%m%d')}_{end_date.strftime('%Y%m%d')}.pdf"
             report_path = os.path.join(self.output_dir, report_filename)
 
-            self.html_generator.generate_weekly_report(
+            self.pdf_generator.generate_weekly_report(
                 report_path,
                 start_date,
                 end_date,
