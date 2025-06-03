@@ -1,154 +1,154 @@
-# Game Asset Prompt Engineering Methodology
+# Phương Pháp Kỹ Thuật Prompt Cho Tài Sản Game
 
-This document outlines our structured approach to designing prompts for generating high-quality game assets with AI models.
+Tài liệu này trình bày cách tiếp cận có cấu trúc của chúng tôi để thiết kế prompt nhằm tạo ra tài sản game chất lượng cao bằng các mô hình AI.
 
-## Prompt Structure Framework
+## Khung Cấu Trúc Prompt
 
-### 1. Core Asset Definition
-
-```
-{asset_type} for {game_genre} with {style_descriptor} style
-```
-
-Example: "Character sprite for 2D platformer game with pixel art style"
-
-### 2. Visual Attribute Layers
+### 1. Định Nghĩa Tài Sản Cốt Lõi
 
 ```
-Visual Attributes:
-- Primary colors: {color_palette}
-- Lighting: {lighting_condition}
-- Perspective: {viewpoint}
-- Level of detail: {detail_level}
-- Art style: {specific_style_reference}
+{loại_tài_sản} cho {thể_loại_game} với phong cách {mô_tả_phong_cách}
 ```
 
-Example:
-```
-Visual Attributes:
-- Primary colors: vibrant blue and orange with dark purple accents
-- Lighting: dramatic side lighting with high contrast
-- Perspective: front-facing isometric view
-- Level of detail: medium-high with clear silhouette
-- Art style: similar to Hollow Knight with clean lines
-```
+Ví dụ: "Sprite nhân vật cho game nền tảng 2D với phong cách pixel art"
 
-### 3. Technical Specifications
+### 2. Lớp Thuộc Tính Trực Quan
 
 ```
-Technical Specifications:
-- Resolution: {width}x{height}
-- Format: {file_format}
-- Background: {background_type}
-- Animation frames: {frame_count} [if applicable]
-- Transparency: {yes/no}
+Thuộc Tính Trực Quan:
+- Màu sắc chính: {bảng_màu}
+- Ánh sáng: {điều_kiện_ánh_sáng}
+- Góc nhìn: {điểm_nhìn}
+- Mức độ chi tiết: {mức_độ_chi_tiết}
+- Phong cách nghệ thuật: {tham_chiếu_phong_cách_cụ_thể}
 ```
 
-Example:
+Ví dụ:
 ```
-Technical Specifications:
-- Resolution: 512x512
-- Format: PNG
-- Background: transparent
-- Animation frames: static pose
-- Transparency: yes
-```
-
-### 4. Contextual Reference Integration
-
-```
-Reference Integration:
-- Reference similar to: {reference_description or URL}
-- Key elements to maintain: {specific_elements}
-- Avoid these aspects: {elements_to_avoid}
+Thuộc Tính Trực Quan:
+- Màu sắc chính: xanh dương và cam rực rỡ với điểm nhấn tím đậm
+- Ánh sáng: ánh sáng bên hông kịch tính với độ tương phản cao
+- Góc nhìn: góc nhìn đẳng thước từ phía trước
+- Mức độ chi tiết: trung bình-cao với đường viền rõ ràng
+- Phong cách nghệ thuật: tương tự như Hollow Knight với đường nét sạch sẽ
 ```
 
-Example:
-```
-Reference Integration:
-- Reference similar to: the character design of Hollow Knight's protagonist
-- Key elements to maintain: silhouette clarity, limb proportions, mask-like face
-- Avoid these aspects: excessive detail in small areas, realistic textures
-```
-
-### 5. Aesthetic Direction Guidance
+### 3. Thông Số Kỹ Thuật
 
 ```
-Aesthetic Direction:
-- Mood: {mood_descriptor}
-- Theme: {thematic_elements}
-- Cultural influences: {cultural_references}
-- Target audience: {audience_demographic}
+Thông Số Kỹ Thuật:
+- Độ phân giải: {chiều_rộng}x{chiều_cao}
+- Định dạng: {định_dạng_tệp}
+- Nền: {loại_nền}
+- Khung hình hoạt ảnh: {số_lượng_khung} [nếu áp dụng]
+- Trong suốt: {có/không}
 ```
 
-Example:
+Ví dụ:
 ```
-Aesthetic Direction:
-- Mood: mysterious and slightly melancholic
-- Theme: ancient civilization reclaimed by nature
-- Cultural influences: blend of Art Nouveau decorative elements
-- Target audience: teen to adult players who appreciate artistic indie games
-```
-
-### 6. Technical Optimization Directives
-
-```
-Optimization Directives:
-- Prioritize: {priority_aspect}
-- Ensure compatibility with: {environment}
-- Maintain consistency with: {related_assets}
+Thông Số Kỹ Thuật:
+- Độ phân giải: 512x512
+- Định dạng: PNG
+- Nền: trong suốt
+- Khung hình hoạt ảnh: tư thế tĩnh
+- Trong suốt: có
 ```
 
-Example:
+### 4. Tích Hợp Tham Chiếu Ngữ Cảnh
+
 ```
-Optimization Directives:
-- Prioritize: clear readability at smaller scales
-- Ensure compatibility with: dark game environments
-- Maintain consistency with: previously established character design language
+Tích Hợp Tham Chiếu:
+- Tham chiếu tương tự như: {mô_tả_tham_chiếu hoặc URL}
+- Các yếu tố quan trọng cần duy trì: {các_yếu_tố_cụ_thể}
+- Tránh các khía cạnh này: {các_yếu_tố_cần_tránh}
 ```
 
-## Parameter Optimization
+Ví dụ:
+```
+Tích Hợp Tham Chiếu:
+- Tham chiếu tương tự như: thiết kế nhân vật của nhân vật chính trong Hollow Knight
+- Các yếu tố quan trọng cần duy trì: độ rõ ràng của đường viền, tỷ lệ chi tiết, khuôn mặt giống mặt nạ
+- Tránh các khía cạnh này: chi tiết quá mức ở các khu vực nhỏ, kết cấu thực tế
+```
 
-For each AI model, we fine-tune these parameters:
+### 5. Hướng Dẫn Định Hướng Thẩm Mỹ
 
-1. **Temperature Setting**: Controls randomness
-   - Low (0.2-0.4): More predictable results
-   - Medium (0.5-0.7): Balanced creativity
-   - High (0.8-1.0): Maximum variation
+```
+Định Hướng Thẩm Mỹ:
+- Tâm trạng: {mô_tả_tâm_trạng}
+- Chủ đề: {yếu_tố_chủ_đề}
+- Ảnh hưởng văn hóa: {tham_chiếu_văn_hóa}
+- Đối tượng mục tiêu: {nhân_khẩu_học_đối_tượng}
+```
 
-2. **Detail Level**: Adjust based on asset complexity
-   - Low: Iconographic, symbolic representations
-   - Medium: Standard game assets with clear details
-   - High: Showcase pieces with intricate details
+Ví dụ:
+```
+Định Hướng Thẩm Mỹ:
+- Tâm trạng: bí ẩn và hơi buồn bã
+- Chủ đề: nền văn minh cổ đại được thiên nhiên chiếm lại
+- Ảnh hưởng văn hóa: kết hợp các yếu tố trang trí Art Nouveau
+- Đối tượng mục tiêu: người chơi từ thanh thiếu niên đến người lớn đánh giá cao các trò chơi indie nghệ thuật
+```
 
-3. **Style Emphasis**: Weight between different style aspects
-   - Technical specifications (higher weight for technical assets)
-   - Artistic expression (higher weight for key art)
-   - Functional design (higher weight for interactive elements)
+### 6. Chỉ Thị Tối Ưu Hóa Kỹ Thuật
 
-4. **Negative Prompting**: Elements to explicitly avoid
-   - Technical issues: blurriness, artifacts, inconsistent lighting
-   - Design problems: cluttered composition, poor readability
-   - Style mismatches: inappropriate art style for the game genre
+```
+Chỉ Thị Tối Ưu Hóa:
+- Ưu tiên: {khía_cạnh_ưu_tiên}
+- Đảm bảo tương thích với: {môi_trường}
+- Duy trì sự nhất quán với: {tài_sản_liên_quan}
+```
 
-## Model-Specific Considerations
+Ví dụ:
+```
+Chỉ Thị Tối Ưu Hóa:
+- Ưu tiên: khả năng đọc rõ ràng ở quy mô nhỏ hơn
+- Đảm bảo tương thích với: môi trường game tối
+- Duy trì sự nhất quán với: ngôn ngữ thiết kế nhân vật đã được thiết lập trước đó
+```
+
+## Tối Ưu Hóa Thông Số
+
+Đối với mỗi mô hình AI, chúng tôi tinh chỉnh các thông số sau:
+
+1. **Cài Đặt Nhiệt Độ**: Kiểm soát tính ngẫu nhiên
+   - Thấp (0.2-0.4): Kết quả dễ dự đoán hơn
+   - Trung bình (0.5-0.7): Sáng tạo cân bằng
+   - Cao (0.8-1.0): Biến thể tối đa
+
+2. **Mức Độ Chi Tiết**: Điều chỉnh dựa trên độ phức tạp của tài sản
+   - Thấp: Biểu diễn biểu tượng, tượng trưng
+   - Trung bình: Tài sản game tiêu chuẩn với chi tiết rõ ràng
+   - Cao: Các tác phẩm trưng bày với chi tiết phức tạp
+
+3. **Nhấn Mạnh Phong Cách**: Trọng số giữa các khía cạnh phong cách khác nhau
+   - Thông số kỹ thuật (trọng số cao hơn cho tài sản kỹ thuật)
+   - Biểu hiện nghệ thuật (trọng số cao hơn cho nghệ thuật chính)
+   - Thiết kế chức năng (trọng số cao hơn cho các yếu tố tương tác)
+
+4. **Prompting Tiêu Cực**: Các yếu tố cần tránh rõ ràng
+   - Vấn đề kỹ thuật: mờ, nhiễu ảnh, ánh sáng không nhất quán
+   - Vấn đề thiết kế: bố cục lộn xộn, khả năng đọc kém
+   - Không phù hợp về phong cách: phong cách nghệ thuật không phù hợp với thể loại game
+
+## Cân Nhắc Đặc Thù Cho Từng Mô Hình
 
 ### Stable Diffusion
 
-- Strengths: Detailed textures, style consistency
-- Optimization: Emphasize composition keywords, use LoRA models for style
+- Điểm mạnh: Kết cấu chi tiết, nhất quán về phong cách
+- Tối ưu hóa: Nhấn mạnh các từ khóa về bố cục, sử dụng mô hình LoRA cho phong cách
 
 ### Midjourney
 
-- Strengths: Aesthetic coherence, creative interpretation
-- Optimization: Use version parameters, stylization settings
+- Điểm mạnh: Sự hài hòa thẩm mỹ, diễn giải sáng tạo
+- Tối ưu hóa: Sử dụng tham số phiên bản, cài đặt kiểu dáng
 
 ### DALL-E
 
-- Strengths: Following specific instructions, layout accuracy
-- Optimization: Clear structural descriptions, specific placement instructions
+- Điểm mạnh: Tuân theo hướng dẫn cụ thể, độ chính xác bố cục
+- Tối ưu hóa: Mô tả cấu trúc rõ ràng, hướng dẫn vị trí cụ thể
 
 ### ComfyUI/Automatic1111
 
-- Strengths: Technical control, consistent results with saved settings
-- Optimization: Develop and save specific workflows for each asset type
+- Điểm mạnh: Kiểm soát kỹ thuật, kết quả nhất quán với cài đặt đã lưu
+- Tối ưu hóa: Phát triển và lưu quy trình làm việc cụ thể cho từng loại tài sản

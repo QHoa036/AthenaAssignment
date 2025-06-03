@@ -1,115 +1,115 @@
-# Game Asset Validation Methodology
+# Phương Pháp Xác Thực Tài Sản Game
 
-This document outlines our systematic approach to testing and validating AI-generated game assets against reference materials.
+Tài liệu này trình bày cách tiếp cận có hệ thống của chúng tôi để kiểm tra và xác thực các tài sản game được tạo ra bằng AI so với các tài liệu tham chiếu.
 
-## Validation Framework
+## Khung Xác Thực
 
-### 1. Visual Fidelity Assessment
+### 1. Đánh Giá Độ Trung Thực Hình Ảnh
 
-#### Objective Metrics
-- **Structural Similarity Index (SSIM)**
-  - Measures similarity between reference and generated images
-  - Target: >0.7 SSIM score for acceptable assets
+#### Các Chỉ Số Khách Quan
+- **Chỉ Số Tương Đồng Cấu Trúc (SSIM)**
+  - Đo lường sự tương đồng giữa hình ảnh tham chiếu và hình ảnh được tạo ra
+  - Mục tiêu: điểm SSIM >0.7 cho tài sản chấp nhận được
 
-- **Color Histogram Analysis**
-  - Compares color distribution between reference and generated assets
-  - Target: <15% deviation from reference color palette
+- **Phân Tích Biểu Đồ Màu**
+  - So sánh phân bố màu giữa tài sản tham chiếu và tài sản được tạo ra
+  - Mục tiêu: sai lệch <15% so với bảng màu tham chiếu
 
-- **Edge Detection Comparison**
-  - Evaluates silhouette and structural accuracy
-  - Target: >80% edge correspondence
+- **So Sánh Phát Hiện Cạnh**
+  - Đánh giá độ chính xác của đường viền và cấu trúc
+  - Mục tiêu: tương đồng cạnh >80%
 
-#### Subjective Evaluation Criteria
-- Visual cohesion with game art style
-- Character/object recognition clarity
-- Artistic merit and appeal
-- Brand/IP consistency (if applicable)
+#### Tiêu Chí Đánh Giá Chủ Quan
+- Sự gắn kết trực quan với phong cách nghệ thuật game
+- Độ rõ ràng trong nhận diện nhân vật/đối tượng
+- Giá trị nghệ thuật và sự hấp dẫn
+- Tính nhất quán với thương hiệu/IP (nếu áp dụng)
 
-### 2. Technical Compliance Validation
+### 2. Xác Thực Sự Tuân Thủ Kỹ Thuật
 
-- **Resolution Verification**
-  - Exact match to requested dimensions
+- **Xác Minh Độ Phân Giải**
+  - Khớp chính xác với kích thước đã yêu cầu
 
-- **Format Compliance**
-  - File format, transparency, color space
+- **Tuân Thủ Định Dạng**
+  - Định dạng tệp, tính trong suốt, không gian màu
 
-- **Game Engine Compatibility**
-  - Import testing in target engine
-  - Performance impact assessment
+- **Tương Thích Với Game Engine**
+  - Kiểm tra nhập vào engine mục tiêu
+  - Đánh giá tác động hiệu suất
 
-- **Scale Testing**
-  - Appearance at different display resolutions
-  - Readability at intended game camera distance
+- **Kiểm Tra Quy Mô**
+  - Hiển thị ở các độ phân giải màn hình khác nhau
+  - Khả năng đọc ở khoảng cách camera game dự định
 
-### 3. Comparative Analysis Methods
+### 3. Phương Pháp Phân Tích So Sánh
 
-#### A/B Testing Protocol
-1. Present both reference and generated assets to test group
-2. Collect blind preference data and reasoning
-3. Identify preference patterns and improvement areas
+#### Giao Thức Kiểm Tra A/B
+1. Trình bày cả tài sản tham chiếu và tài sản được tạo ra cho nhóm kiểm tra
+2. Thu thập dữ liệu và lý do ưu tiên mù
+3. Xác định các mô hình ưu tiên và các khu vực cần cải thiện
 
-#### Expert Review Process
-1. Submission to art director/lead artist
-2. Structured feedback using evaluation rubric
-3. Specific improvement recommendations
+#### Quy Trình Đánh Giá Chuyên Gia
+1. Gửi đến giám đốc nghệ thuật/nghệ sĩ chính
+2. Phản hồi có cấu trúc sử dụng bảng đánh giá
+3. Các khuyến nghị cải tiến cụ thể
 
-#### In-Context Evaluation
-1. Place asset in game environment mockup
-2. Assess visual integration with other assets
-3. Evaluate functional clarity in gameplay context
+#### Đánh Giá Trong Ngữ Cảnh
+1. Đặt tài sản trong mô hình môi trường game
+2. Đánh giá sự tích hợp trực quan với các tài sản khác
+3. Đánh giá sự rõ ràng về chức năng trong ngữ cảnh gameplay
 
-## Validation Tools
+## Công Cụ Xác Thực
 
-### Layer.ai Testing Protocol
+### Giao Thức Kiểm Tra Layer.ai
 
-1. **Upload Reference and Generated Assets**
-   - Maintain consistent naming convention
-   - Tag with asset type and iteration number
+1. **Tải Lên Tài Sản Tham Chiếu và Tài Sản Được Tạo Ra**
+   - Duy trì quy ước đặt tên nhất quán
+   - Gắn thẻ với loại tài sản và số lần lặp lại
 
-2. **Comparative Analysis**
-   - Use side-by-side comparison tool
-   - Run automated similarity analysis
-   - Generate difference heatmaps
+2. **Phân Tích So Sánh**
+   - Sử dụng công cụ so sánh cạnh nhau
+   - Chạy phân tích tương đồng tự động
+   - Tạo bản đồ nhiệt sự khác biệt
 
-3. **A/B Preference Testing**
-   - Configure blind testing scenarios
-   - Collect and aggregate feedback
-   - Export consolidated results
+3. **Kiểm Tra Ưu Tiên A/B**
+   - Cấu hình các kịch bản kiểm tra mù
+   - Thu thập và tổng hợp phản hồi
+   - Xuất kết quả tổng hợp
 
-### Custom Validation Script
+### Script Xác Thực Tùy Chỉnh
 
-Our `validation.py` script performs these automated checks:
-- SSIM score calculation
-- Color histogram comparison
-- Edge detection and comparison
-- Resolution and format verification
-- Results logging and visualization
+Script `validation.py` của chúng tôi thực hiện các kiểm tra tự động này:
+- Tính toán điểm SSIM
+- So sánh biểu đồ màu
+- Phát hiện và so sánh cạnh
+- Xác minh độ phân giải và định dạng
+- Ghi nhật ký kết quả và trực quan hóa
 
-### Validation Report Template
+### Mẫu Báo Cáo Xác Thực
 
-Each asset validation produces a standardized report including:
-- Objective metrics with pass/fail status
-- Visual comparison images
-- Expert feedback summary
-- Iteration recommendations
-- Historical performance tracking
+Mỗi xác thực tài sản tạo ra một báo cáo chuẩn hóa bao gồm:
+- Các chỉ số khách quan với trạng thái đạt/không đạt
+- Hình ảnh so sánh trực quan
+- Tổng hợp phản hồi của chuyên gia
+- Các khuyến nghị lặp lại
+- Theo dõi hiệu suất lịch sử
 
-## Validation Thresholds
+## Ngưỡng Xác Thực
 
-| Metric | Reject | Acceptable | Excellent |
+| Chỉ số | Loại bỏ | Chấp nhận được | Xuất sắc |
 |--------|--------|------------|-----------|
-| SSIM Score | <0.6 | 0.6-0.8 | >0.8 |
-| Color Match | <70% | 70%-90% | >90% |
-| Edge Accuracy | <75% | 75%-90% | >90% |
-| Expert Rating | <6/10 | 6-8/10 | >8/10 |
-| A/B Preference | <40% | 40%-60% | >60% |
+| Điểm SSIM | <0.6 | 0.6-0.8 | >0.8 |
+| Phù hợp màu | <70% | 70%-90% | >90% |
+| Độ chính xác cạnh | <75% | 75%-90% | >90% |
+| Đánh giá chuyên gia | <6/10 | 6-8/10 | >8/10 |
+| Ưu tiên A/B | <40% | 40%-60% | >60% |
 
-## Continuous Improvement Loop
+## Vòng Lặp Cải Tiến Liên Tục
 
-Validation results directly feed back into:
-1. Prompt refinement
-2. Parameter adjustments
-3. Model selection
-4. Reference asset clarification
+Kết quả xác thực được phản hồi trực tiếp vào:
+1. Tinh chỉnh prompt
+2. Điều chỉnh tham số
+3. Lựa chọn mô hình
+4. Làm rõ tài sản tham chiếu
 
-This creates a continuous improvement cycle where each iteration builds on validated learning from previous attempts.
+Điều này tạo ra một chu kỳ cải tiến liên tục trong đó mỗi lần lặp lại được xây dựng trên kiến thức đã được xác thực từ các lần thử trước.

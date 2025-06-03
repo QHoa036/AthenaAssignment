@@ -63,19 +63,19 @@ pip install -r requirements.txt
    # Thông tin xác thực Google API
    GOOGLE_APPLICATION_CREDENTIALS=./data/google_credentials.json
    GOOGLE_SHEETS_ID=your_sheet_id
-   
+
    # Khóa API cho các dịch vụ AI
    OPENAI_API_KEY=your_openai_api_key
    ANTHROPIC_API_KEY=your_anthropic_api_key
-   
+
    # Cấu hình thông báo email
    EMAIL_SENDER=your_email@example.com
    EMAIL_PASSWORD=your_app_password
    EMAIL_RECIPIENT=admin@example.com
-   
+
    # Cấu hình Slack
    SLACK_WEBHOOK_URL=your_slack_webhook_url
-   
+
    # Cài đặt lưu trữ
    GOOGLE_DRIVE_FOLDER_ID=your_folder_id
    ```
